@@ -1,0 +1,66 @@
+
+================== Jenkins installation (on server1 i.e master) ==================================
+
+sudo apt-add-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+
+sudo apt-get update
+sudo apt-get install jenkins
+
+sudo apt-get install git -y
+sudo apt-get install maven -y
+
+====================== Jenkins installation (on server2 i.e QA server) =======================
+
+sudo apt-get update
+sudo apt-get install tomcat7
+sudo apt-get install tomcat7-admin
+
+-----> edit tomcat user.xml file in tomcat7 dir
+   cd /etc/tomcat7
+   sudo vim tomcat-users.xml
+-----> add the below statement 
+
+<user username="admin" passwd="admin" roles="manager-scrit"/>
+
+save @ quit
+
+-----> Restart tomcat7
+
+#sudo service tomcat7 restart 
+
+
+====================== Jenkins installation (on server3 i.e prod server) =======================
+
+sudo apt-get update
+sudo apt-get install tomcat7
+sudo apt-get install tomcat7-admin
+
+----> edit tomcat user.xml file in tomcat7 dir
+   cd /etc/tomcat7
+  sudo vim tomcat-user.xml
+----> add the below statement 
+
+<user username="admin" passwd="admin" roles="manager-scrit"/>
+
+save @ quit
+
+----> #sudo service tomcat7 restart 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
